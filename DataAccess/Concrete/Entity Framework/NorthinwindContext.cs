@@ -14,7 +14,7 @@ namespace DataAccess.Concrete.Entity_Framework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=true");
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories  { get; set; }

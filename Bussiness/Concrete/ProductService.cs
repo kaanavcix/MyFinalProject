@@ -1,5 +1,8 @@
 ﻿
 using Bussiness.Abstract;
+using Bussiness.Constant;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entity.Concrete;
 using Entity.DTOs;
@@ -21,9 +24,27 @@ namespace Bussiness.Concrete
             _productDal = productDal;
         }
 
-        public void add(Product product)
+        public IResult Add(Product product)
         {
-          _productDal.add(product);
+            if (product.ProductName.Length <= 2)
+            {
+                 return new ErrorResult(MessagesConstant.SuccessMessage);
+            }
+            else
+            {
+                _productDal.add(product);
+                return new SuccessResult(MessagesConstant.ErrorMessage);
+            }
+                
+            
+
+           
+        }
+
+
+        public Product GetProductById(int id)
+        {
+           return _productDal.Get(p => p.ProductID == id);
         }
 
         public List<ProductDetailDto> GetProductDetail()
@@ -31,14 +52,14 @@ namespace Bussiness.Concrete
           return  _productDal.GetProductDetail();
         }
 
-        public List<Product> GetProducts()
-        {
-            return _productDal.getAll(null);
+        public IDataResult<List<Product>> GetProducts()
+        { var result = _productDal.getAll(null);
+            return new DataResult<List<Product>>(result, "Başarılı", true);
         }
 
         public List<Product> GetProductsByCategories(int Categories)
         {
-            return _productDal.getAll(p => p.CategoryId == Categories);
+            return _productDal.getAll(p => p.CategoryID == Categories);
         }
 
         public List<Product> GetProductsByInterval(decimal min, decimal max)
@@ -56,6 +77,6 @@ namespace Bussiness.Concrete
             _productDal.update(product);
         }
 
-
+      
     }
 }

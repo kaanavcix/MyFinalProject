@@ -161,7 +161,7 @@
     <Compile Include="Abstract\IProductDal.cs" />
     <Compile Include="Concrete\Entity Framework\EfCategoryDal.cs" />
     <Compile Include="Concrete\Entity Framework\EfOrdersDal.cs" />
-    <Compile Include="Concrete\Entity Framework\EfPrdoductDal.cs" />
+    <Compile Include="Concrete\Entity Framework\EfProductDal.cs" />
     <Compile Include="Concrete\Entity Framework\NorthinwindContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

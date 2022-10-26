@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bussiness.Abstract;
+using Bussiness.Concrete;
+using DataAccess.Concrete.Entity_Framework;
+using Entity.Concrete;
+using System;
 
 namespace ConsoleLogTest
 {
@@ -10,6 +10,15 @@ namespace ConsoleLogTest
     {
         static void Main(string[] args)
         {
+
+
+            ProductService service = new ProductService(new EfProductDal());
+
+            foreach (var arg in service.GetProducts())
+            {
+
+                Console.WriteLine(arg);
+            }
         }
     }
 }
